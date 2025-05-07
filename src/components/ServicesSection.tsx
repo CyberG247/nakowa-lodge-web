@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Bed, Users, Image, Wifi, Clock, Restaurant } from 'lucide-react';
+import { Bed, Users, Image, Wifi, Clock, Utensils } from 'lucide-react';
 
 interface ServiceProps {
   icon: React.ReactNode;
@@ -26,7 +26,7 @@ const ServicesSection = () => {
       description: "Modern rooms with premium amenities for your ultimate comfort and relaxation."
     },
     {
-      icon: <Restaurant size={28} />,
+      icon: <Utensils size={28} />,
       title: "Fine Dining",
       description: "Enjoy delicious local and international cuisine at our in-house restaurant."
     },

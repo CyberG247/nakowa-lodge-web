@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,7 +6,7 @@ import ServicesSection from '@/components/ServicesSection';
 import TestimonialSlider from '@/components/TestimonialSlider';
 import MapSection from '@/components/MapSection';
 import BookingForm from '@/components/BookingForm';
-import { Bed, Wifi, Restaurant, Clock, Book, MapPin } from 'lucide-react';
+import { Bed, Wifi, Utensils, Clock, Book, MapPin } from 'lucide-react';
 
 // Featured Rooms
 const featuredRooms = [
@@ -71,7 +70,7 @@ const HomePage = () => {
                 </div>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full bg-accent-beige flex items-center justify-center mr-3">
-                    <Restaurant className="text-accent-red" size={24} />
+                    <Utensils className="text-accent-red" size={24} />
                   </div>
                   <span className="font-medium">Fine Dining</span>
                 </div>
