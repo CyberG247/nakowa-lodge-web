@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Slide {
   image: string;
@@ -69,19 +70,21 @@ const HeroSlider = () => {
                 {slide.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <Button 
-                  className="booking-btn bg-accent-red hover:bg-red-700 text-white px-8 py-6 text-lg"
-                  onClick={() => console.log('Book Now')}
-                >
-                  Book Now
-                </Button>
-                <Button 
-                  variant="outline"
-                  className="booking-btn border-white text-white hover:bg-white hover:text-navy px-8 py-6 text-lg"
-                  onClick={() => console.log('View Rooms')}
-                >
-                  View Our Rooms
-                </Button>
+                <Link to="/rooms">
+                  <Button 
+                    className="booking-btn bg-accent-red hover:bg-navy hover:text-white px-8 py-6 text-lg"
+                  >
+                    Book Now
+                  </Button>
+                </Link>
+                <Link to="/rooms">
+                  <Button 
+                    variant="outline"
+                    className="booking-btn border-white text-white hover:bg-navy hover:text-white hover:border-navy px-8 py-6 text-lg"
+                  >
+                    View Our Rooms
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
