@@ -33,7 +33,7 @@ const Navbar = () => {
 
           {/* Booking Buttons - Desktop */}
           <div className="hidden md:flex space-x-4">
-            <Link to="/rooms">
+            <Link to="/booking">
               <Button 
                 variant="outline" 
                 className="booking-btn border-accent-red text-accent-red hover:bg-navy hover:text-white hover:border-navy"
@@ -41,7 +41,7 @@ const Navbar = () => {
                 Book Now
               </Button>
             </Link>
-            <Link to="/rooms">
+            <Link to="/booking">
               <Button 
                 className="booking-btn bg-navy hover:bg-navy-light text-white" 
               >
@@ -72,7 +72,7 @@ const Navbar = () => {
             <Link to="/gallery" className="block py-2 px-4 text-navy hover:bg-accent-beige rounded-md" onClick={toggleMenu}>Gallery</Link>
             <Link to="/contact" className="block py-2 px-4 text-navy hover:bg-accent-beige rounded-md" onClick={toggleMenu}>Contact</Link>
             <div className="pt-2 space-y-2">
-              <Link to="/rooms" className="block w-full">
+              <Link to="/booking" className="block w-full">
                 <Button 
                   variant="outline" 
                   className="w-full booking-btn border-accent-red text-accent-red hover:bg-navy hover:text-white hover:border-navy"
@@ -80,7 +80,7 @@ const Navbar = () => {
                   Book Now
                 </Button>
               </Link>
-              <Link to="/rooms" className="block w-full">
+              <Link to="/booking" className="block w-full">
                 <Button 
                   className="w-full booking-btn bg-navy hover:bg-navy-light text-white" 
                 >

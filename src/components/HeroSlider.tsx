@@ -70,7 +70,7 @@ const HeroSlider = () => {
                 {slide.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link to="/rooms">
+                <Link to="/booking">
                   <Button 
                     className="booking-btn bg-accent-red hover:bg-navy hover:text-white px-8 py-6 text-lg"
                   >

@@ -6,6 +6,7 @@ import ServicesSection from '@/components/ServicesSection';
 import TestimonialSlider from '@/components/TestimonialSlider';
 import MapSection from '@/components/MapSection';
 import BookingForm from '@/components/BookingForm';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { Bed, Wifi, Utensils, Clock, Book, MapPin } from 'lucide-react';
 
 // Featured Rooms
@@ -91,7 +92,7 @@ const HomePage = () => {
             <div className="lg:w-1/2">
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&h=400" 
+                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&h=500" 
                   alt="Hotel Lobby" 
                   className="rounded-lg shadow-md object-cover h-48 w-full" 
                 />
@@ -235,6 +236,7 @@ const HomePage = () => {
       {/* Map Section */}
       <MapSection />
       
+      <WhatsAppButton />
       <Footer />
     </div>
   );
