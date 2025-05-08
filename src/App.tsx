@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Booking from "./pages/Booking";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import WhatsAppButton from './components/WhatsAppButton';
 
 const queryClient = new QueryClient();
 

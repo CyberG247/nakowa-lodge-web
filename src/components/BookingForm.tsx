@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import { useBookingStore } from '@/stores/bookingStore';
+import { useBookingStore, BookingData } from '@/stores/bookingStore';
 import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,7 +43,7 @@ const formSchema = z.object({
   checkIn: z.date({ required_error: "Check-in date is required" }),
   checkOut: z.date({ required_error: "Check-out date is required" }),
   specialRequests: z.string().optional(),
-  paymentMethod: z.string().optional(),
+  paymentMethod: z.string(),
   selectedAmenities: z.array(z.string()).optional(),
 });
 
@@ -64,19 +64,19 @@ const BookingForm = () => {
       guests: 1,
       specialRequests: '',
       paymentMethod: 'on_arrival',
-      selectedAmenities: [],
     },
   });
 
   const onSubmit = (values: FormValues) => {
-    // Add selected amenities to the form values
-    const bookingWithAmenities = {
+    // Create booking data with all required fields
+    const bookingData: BookingData = {
       ...values,
       selectedAmenities,
+      specialRequests: values.specialRequests || '',
     };
     
-    console.log('Booking data submitted:', bookingWithAmenities);
-    setBookingData(bookingWithAmenities);
+    console.log('Booking data submitted:', bookingData);
+    setBookingData(bookingData);
     toast.success("Booking submitted successfully!");
   };
 

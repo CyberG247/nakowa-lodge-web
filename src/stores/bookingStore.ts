@@ -1,7 +1,7 @@
 
 import { create } from 'zustand';
 
-interface BookingData {
+export interface BookingData {
   fullName: string;
   email: string;
   phone: string;
@@ -10,7 +10,8 @@ interface BookingData {
   checkIn: Date | null;
   checkOut: Date | null;
   specialRequests: string;
-  paymentMethod?: string;
+  paymentMethod: string;
+  selectedAmenities?: string[];
 }
 
 interface BookingStore {
