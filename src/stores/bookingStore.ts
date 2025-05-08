@@ -11,7 +11,7 @@ export interface BookingData {
   checkOut: Date | null;
   specialRequests: string;
   paymentMethod: string;
-  selectedAmenities?: string[];
+  selectedAmenities: string[];
 }
 
 interface BookingStore {
