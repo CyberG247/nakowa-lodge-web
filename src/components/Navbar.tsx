@@ -18,7 +18,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <h1 className="text-2xl md:text-3xl font-bold text-navy">
-              <span className="text-accent-red">B.</span> Nakowa
+              <span className="text-accent-red">Grand Ambar Palace Hotels &amp; Suites</span>
             </h1>
           </Link>
 
