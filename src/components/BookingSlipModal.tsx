@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from '@/components/ui/button';
 import { Printer } from 'lucide-react';
 import { useBookingStore } from '@/stores/bookingStore';
+import { calculateTotalPrice, formatCurrency } from '@/utils/bookingData';
 
 const BookingSlipModal = () => {
   const { 
@@ -32,8 +33,15 @@ const BookingSlipModal = () => {
 
   if (!bookingData) return null;
 
-  const { fullName, email, phone, roomType, guests, checkIn, checkOut, specialRequests } = bookingData;
-  
+  const { fullName, email, phone, roomType, guests, checkIn, checkOut, specialRequests, selectedAmenities } = bookingData;
+
+  const totalAmount = calculateTotalPrice(
+    roomType,
+    checkIn,
+    checkOut,
+    selectedAmenities
+  );
+
   const formatDate = (date: Date | null) => {
     if (!date) return 'Not specified';
     return new Date(date).toLocaleDateString('en-US', {
@@ -110,10 +118,16 @@ const BookingSlipModal = () => {
                 <p>{specialRequests}</p>
               </div>
             )}
+
+            {/* Total Amount Section */}
+            <div className="mt-6 py-2 px-4 bg-gray-100 rounded-md flex justify-between items-center">
+              <span className="font-semibold text-base text-navy">Total Amount:</span>
+              <span className="font-bold text-lg text-accent-red">{formatCurrency(totalAmount)}</span>
+            </div>
           </div>
           
           <div className="text-center mt-6">
-            <p className="text-sm text-gray-500">Thank you for choosing Grand Ambar Palace Hotels & Suites.</p>
+            <p className="text-sm text-gray-500">Thank you for choosing Grand Ambar Palace Hotels &amp; Suites.</p>
             <p className="text-sm text-gray-500">For any inquiries, please contact us at: +234 800 000 0000</p>
           </div>
         </div>
@@ -142,3 +156,4 @@ const BookingSlipModal = () => {
 };
 
 export default BookingSlipModal;
+
