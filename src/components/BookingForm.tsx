@@ -116,8 +116,8 @@ const BookingForm = () => {
           />
           
           <Button 
-            type="submit" 
-            className="w-full bg-accent-red hover:bg-navy text-white py-3 rounded-md"
+            type="submit"
+            className="w-full bg-navy text-white hover:bg-accent-red transition-colors py-3 rounded-md"
           >
             Complete Booking
           </Button>
