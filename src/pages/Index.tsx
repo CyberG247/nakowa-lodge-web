@@ -31,7 +31,7 @@ const featuredRooms = [
     id: 'family',
     name: 'Family Room',
     price: 45000,
-    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&h=500',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&h=400',
     capacity: 4,
     description: 'Perfect for families, these spacious rooms accommodate up to 4 guests comfortably.'
   }
@@ -158,9 +158,9 @@ const HomePage = () => {
                     <button className="text-navy font-medium hover:text-accent-red transition-colors">
                       View Details
                     </button>
-                    <button className="bg-accent-red hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors">
+                    <a href="/booking" className="bg-accent-red hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors">
                       Book Now
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
