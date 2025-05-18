@@ -47,11 +47,30 @@ const BookingForm = () => {
   });
 
   const onSubmit = (values: FormValues) => {
-    // Create booking data with all required fields
+    // Explicitly match BookingData structure & required fields
+    const {
+      fullName,
+      email,
+      phone,
+      roomType,
+      guests,
+      checkIn,
+      checkOut,
+      specialRequests,
+      paymentMethod
+    } = values;
+
     const bookingData: BookingData = {
-      ...values,
+      fullName,
+      email,
+      phone,
+      roomType,
+      guests,
+      checkIn,
+      checkOut,
+      specialRequests: specialRequests || '',
+      paymentMethod,
       selectedAmenities,
-      specialRequests: values.specialRequests || '',
     };
     
     console.log('Booking data submitted:', bookingData);
@@ -113,3 +132,4 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
+
