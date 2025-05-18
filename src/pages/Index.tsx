@@ -50,11 +50,11 @@ const HomePage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-navy">Welcome to B. Nakowa Modern Guest Lodge</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-navy">Welcome to Grand Ambar Palace Hotels &amp; Suites</h2>
               <div className="w-20 h-1 bg-accent-red mb-6"></div>
               <p className="text-gray-600 mb-6">
                 Experience premium comfort and hospitality in the heart of Dutse, Jigawa State. 
-                B. Nakowa Modern Guest Lodge offers an unparalleled blend of Nigerian warmth and international 
+                Grand Ambar Palace Hotels &amp; Suites offers an unparalleled blend of Nigerian warmth and international 
                 standards, ensuring your stay is nothing short of exceptional.
               </p>
               <p className="text-gray-600 mb-6">
@@ -189,7 +189,7 @@ const HomePage = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-navy">Book Your Stay</h2>
               <div className="w-20 h-1 bg-accent-red mb-6"></div>
               <p className="text-gray-600 mb-6">
-                Experience the comfort and luxury of B. Nakowa Modern Guest Lodge. Our reservation process 
+                Experience the comfort and luxury of Grand Ambar Palace Hotels &amp; Suites. Our reservation process 
                 is simple and hassle-free. Book directly with us for the best rates and special offers.
               </p>
               

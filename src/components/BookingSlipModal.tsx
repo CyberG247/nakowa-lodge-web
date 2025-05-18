@@ -54,7 +54,7 @@ const BookingSlipModal = () => {
         <div id="booking-slip" className="p-6 bg-white border rounded-lg">
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-navy">
-              <span className="text-accent-red">B.</span> Nakowa Modern Guest Lodge
+              <span className="text-accent-red">Grand Ambar Palace</span> Hotels &amp; Suites
             </h2>
             <p className="text-gray-500">Dutse, Jigawa State, Nigeria</p>
           </div>
@@ -113,7 +113,7 @@ const BookingSlipModal = () => {
           </div>
           
           <div className="text-center mt-6">
-            <p className="text-sm text-gray-500">Thank you for choosing B. Nakowa Modern Guest Lodge.</p>
+            <p className="text-sm text-gray-500">Thank you for choosing Grand Ambar Palace Hotels & Suites.</p>
             <p className="text-sm text-gray-500">For any inquiries, please contact us at: +234 800 000 0000</p>
           </div>
         </div>

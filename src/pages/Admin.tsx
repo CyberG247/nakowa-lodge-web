@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
@@ -30,7 +29,7 @@ const Admin = () => {
         <Sidebar className="border-r bg-white">
           <div className="p-4 border-b">
             <h2 className="text-xl font-bold flex items-center">
-              <span className="text-accent-red">B.</span> Nakowa
+              <span className="text-accent-red">Grand Ambar Palace</span>
               <span className="text-sm font-normal ml-2 text-gray-500">Admin</span>
             </h2>
           </div>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ const AdminLogin = () => {
     // In a real application, this would validate against a backend
     // For demo purposes, we're using a simple check
     setTimeout(() => {
-      if (email === 'admin@nakowa.com' && password === 'admin123') {
+      if (email === 'admin@grandambar.com' && password === 'admin123') {
         toast.success('Login successful');
         navigate('/admin');
       } else {
@@ -33,7 +32,7 @@ const AdminLogin = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold">
-            <span className="text-accent-red">B.</span> Nakowa Modern Guest Lodge
+            <span className="text-accent-red">Grand Ambar Palace</span> Hotels &amp; Suites
           </h1>
           <p className="text-gray-600 mt-2">Admin Login</p>
         </div>
@@ -46,7 +45,7 @@ const AdminLogin = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@nakowa.com"
+              placeholder="admin@grandambar.com"
               required
               className="w-full"
             />
@@ -79,7 +78,7 @@ const AdminLogin = () => {
         
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
-            Demo credentials: admin@nakowa.com / admin123
+            Demo credentials: admin@grandambar.com / admin123
           </p>
         </div>
         

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Instagram, Facebook, Twitter } from 'lucide-react';
@@ -10,10 +9,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Column */}
           <div>
-            <h3 className="text-xl font-playfair text-white mb-4">B. Nakowa Lodge</h3>
+            <h3 className="text-xl font-playfair text-white mb-4">Grand Ambar Palace Hotels & Suites</h3>
             <p className="text-accent-grey text-sm mb-6">
               Experience premium comfort and hospitality in the heart of Dutse, Jigawa State.
-              Your comfort is our culture. We redefine hospitality.
+              Your comfort is our culture. We redefine hospitality at Grand Ambar Palace Hotels & Suites.
             </p>
             <div className="flex space-x-4">
               <a href="https://facebook.com" aria-label="Facebook" className="text-white hover:text-accent-red transition-colors">
@@ -85,7 +84,7 @@ const Footer = () => {
 
         <div className="border-t border-navy-light mt-8 pt-6">
           <p className="text-center text-accent-grey text-sm">
-            &copy; {new Date().getFullYear()} B. Nakowa Modern Guest Lodge. All Rights Reserved.
+            &copy; {new Date().getFullYear()} Grand Ambar Palace Hotels & Suites. All Rights Reserved.
           </p>
         </div>
       </div>

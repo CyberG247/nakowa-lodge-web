@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -20,7 +19,7 @@ const ContactPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
             <div className="w-20 h-1 bg-accent-red mx-auto mb-4"></div>
             <p className="text-xl text-white max-w-3xl mx-auto">
-              We're here to help you with any queries about your stay
+              We're here to help you with any queries about your stay at Grand Ambar Palace Hotels &amp; Suites
             </p>
           </div>
         </div>

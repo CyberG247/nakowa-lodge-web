@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,7 +16,7 @@ const AboutPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">About Us</h1>
             <div className="w-20 h-1 bg-accent-red mx-auto mb-4"></div>
             <p className="text-xl text-white max-w-3xl mx-auto">
-              Discover the story behind B. Nakowa Modern Guest Lodge
+              Discover the story behind Grand Ambar Palace Hotels &amp; Suites
             </p>
           </div>
         </div>
@@ -31,7 +30,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold mb-4 text-navy">Our Story</h2>
               <div className="w-20 h-1 bg-accent-red mb-6"></div>
               <p className="text-gray-700 mb-6">
-                Founded with a vision of redefining hospitality in Dutse, B. Nakowa Modern Guest Lodge 
+                Founded with a vision of redefining hospitality in Dutse, Grand Ambar Palace Hotels &amp; Suites 
                 has quickly established itself as a premier accommodation destination in Jigawa State. 
                 Our journey began with a simple mission: to provide guests with an exceptional stay experience 
                 that combines modern comfort with traditional Nigerian hospitality.
@@ -42,14 +41,14 @@ const AboutPage = () => {
                 excellence in every aspect of our service delivery.
               </p>
               <p className="text-gray-700">
-                Today, B. Nakowa Modern Guest Lodge stands as a beacon of premium hospitality in the 
+                Today, Grand Ambar Palace Hotels &amp; Suites stands as a beacon of premium hospitality in the 
                 heart of Dutse, offering an unparalleled blend of luxury, comfort, and personalized service.
               </p>
             </div>
             <div className="lg:w-1/2">
               <img 
                 src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&h=600" 
-                alt="B. Nakowa Modern Guest Lodge" 
+                alt="Grand Ambar Palace Hotels &amp; Suites" 
                 className="rounded-lg shadow-lg object-cover w-full h-auto"
               />
             </div>
