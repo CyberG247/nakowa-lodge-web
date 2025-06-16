@@ -64,9 +64,11 @@ const RoomCard: React.FC<RoomCardProps> = ({
               View Details
             </Button>
           </Link>
-          <Button className="bg-accent-red hover:bg-red-700 text-white">
-            Book Now
-          </Button>
+          <Link to="/booking">
+            <button className="bg-accent-red hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors font-medium">
+              Book Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
