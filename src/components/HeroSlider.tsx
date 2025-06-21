@@ -55,7 +55,7 @@ const HeroSlider = () => {
                   </Button>
                 </Link>
                 <Link to="/rooms">
-                  <Button variant="outline" className="booking-btn border-white hover:bg-navy hover:border-navy px-8 py-6 text-lg text-zinc-50">
+                  <Button variant="outline" className="booking-btn border-white hover:border-navy px-8 py-6 text-lg text-zinc-950 bg-slate-900 hover:bg-slate-800">
                     View Our Rooms
                   </Button>
                 </Link>
