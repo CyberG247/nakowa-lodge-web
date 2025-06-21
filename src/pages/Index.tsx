@@ -158,7 +158,7 @@ const HomePage = () => {
                     <button className="text-navy font-medium hover:text-accent-red transition-colors">
                       View Details
                     </button>
-                    <a href="/booking" className="bg-accent-red hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors">
+                    <a href="/booking" className="bg-accent-red hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors font-medium">
                       Book Now
                     </a>
                   </div>
