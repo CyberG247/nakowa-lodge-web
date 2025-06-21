@@ -10,36 +10,30 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { Bed, Wifi, Utensils, Clock, Book, MapPin } from 'lucide-react';
 
 // Featured Rooms
-const featuredRooms = [
-  {
-    id: 'standard',
-    name: 'Standard Room',
-    price: 25000,
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&h=500',
-    capacity: 2,
-    description: 'Our comfortable standard rooms offer all the amenities you need for a pleasant stay.'
-  },
-  {
-    id: 'executive',
-    name: 'Executive Chalet',
-    price: 50000,
-    image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&h=500',
-    capacity: 2,
-    description: 'Experience luxury in our spacious executive chalets with premium amenities and services.'
-  },
-  {
-    id: 'family',
-    name: 'Family Room',
-    price: 45000,
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&h=400',
-    capacity: 4,
-    description: 'Perfect for families, these spacious rooms accommodate up to 4 guests comfortably.'
-  }
-];
-
+const featuredRooms = [{
+  id: 'standard',
+  name: 'Standard Room',
+  price: 25000,
+  image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&h=500',
+  capacity: 2,
+  description: 'Our comfortable standard rooms offer all the amenities you need for a pleasant stay.'
+}, {
+  id: 'executive',
+  name: 'Executive Chalet',
+  price: 50000,
+  image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&h=500',
+  capacity: 2,
+  description: 'Experience luxury in our spacious executive chalets with premium amenities and services.'
+}, {
+  id: 'family',
+  name: 'Family Room',
+  price: 45000,
+  image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&h=400',
+  capacity: 4,
+  description: 'Perfect for families, these spacious rooms accommodate up to 4 guests comfortably.'
+}];
 const HomePage = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       <Navbar />
       
       {/* Hero Section */}
@@ -91,26 +85,10 @@ const HomePage = () => {
             </div>
             <div className="lg:w-1/2">
               <div className="grid grid-cols-2 gap-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&h=500" 
-                  alt="Hotel Lobby" 
-                  className="rounded-lg shadow-md object-cover h-48 w-full" 
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1621293954908-907159247fc8?auto=format&fit=crop&w=600&h=400" 
-                  alt="Hotel Restaurant" 
-                  className="rounded-lg shadow-md object-cover h-48 w-full" 
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&h=400" 
-                  alt="Hotel Exterior" 
-                  className="rounded-lg shadow-md object-cover h-48 w-full" 
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=600&h=400" 
-                  alt="Hotel Pool" 
-                  className="rounded-lg shadow-md object-cover h-48 w-full" 
-                />
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&h=500" alt="Hotel Lobby" className="rounded-lg shadow-md object-cover h-48 w-full" />
+                <img src="https://images.unsplash.com/photo-1621293954908-907159247fc8?auto=format&fit=crop&w=600&h=400" alt="Hotel Restaurant" className="rounded-lg shadow-md object-cover h-48 w-full" />
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&h=400" alt="Hotel Exterior" className="rounded-lg shadow-md object-cover h-48 w-full" />
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=600&h=400" alt="Hotel Pool" className="rounded-lg shadow-md object-cover h-48 w-full" />
               </div>
             </div>
           </div>
@@ -132,14 +110,9 @@ const HomePage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredRooms.map((room) => (
-              <div key={room.id} className="room-card rounded-lg overflow-hidden shadow-lg bg-white">
+            {featuredRooms.map(room => <div key={room.id} className="room-card rounded-lg overflow-hidden shadow-lg bg-white">
                 <div className="relative h-56 overflow-hidden">
-                  <img 
-                    src={room.image} 
-                    alt={room.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" 
-                  />
+                  <img src={room.image} alt={room.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
                   <div className="absolute top-3 right-3 bg-accent-red text-white px-3 py-1 rounded-full text-sm font-semibold">
                     ₦{room.price.toLocaleString()}/night
                   </div>
@@ -158,13 +131,12 @@ const HomePage = () => {
                     <button className="text-navy font-medium hover:text-accent-red transition-colors">
                       View Details
                     </button>
-                    <a href="/booking" className="bg-accent-red hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors font-medium">
+                    <a href="/booking" className="bg-accent-red hover:bg-red-700 text- px-4 py-2 rounded-md transition-colors font-medium">
                       Book Now
                     </a>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           <div className="text-center mt-10">
@@ -238,8 +210,6 @@ const HomePage = () => {
       
       <WhatsAppButton />
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default HomePage;
