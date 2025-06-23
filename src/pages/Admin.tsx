@@ -11,6 +11,7 @@ import AdminFAQs from '@/components/admin/AdminFAQs';
 import AdminMessages from '@/components/admin/AdminMessages';
 import AdminDashboard from '@/components/admin/AdminDashboard';
 import AdminUsers from '@/components/admin/AdminUsers';
+import AdminSettings from '@/components/admin/AdminSettings';
 import { Users, Book, LayoutDashboard, Image, MessageCircle, FileText, Settings, LogOut } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -188,7 +189,7 @@ const Admin = () => {
             {activeTab === 'faqs' && <AdminFAQs />}
             {activeTab === 'messages' && <AdminMessages />}
             {activeTab === 'users' && <AdminUsers />}
-            {activeTab === 'settings' && <div>Settings Panel</div>}
+            {activeTab === 'settings' && <AdminSettings />}
           </div>
         </div>
       </div>
