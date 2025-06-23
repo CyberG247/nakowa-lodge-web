@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -19,7 +20,7 @@ const ContactPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
             <div className="w-20 h-1 bg-accent-red mx-auto mb-4"></div>
             <p className="text-xl text-white max-w-3xl mx-auto">
-              We're here to help you with any queries about your stay at Grand Ambar Palace Hotels &amp; Suites
+              We're here to help you with any queries about your stay at Grand Ambar Palace Hotel &amp; Suite
             </p>
           </div>
         </div>
@@ -110,8 +111,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-navy mb-1">Phone Number</h3>
-                    <p className="text-gray-700">+234 800 123 4567</p>
-                    <p className="text-gray-700">+234 701 234 5678</p>
+                    <p className="text-gray-700">+234 803 456 7890</p>
+                    <p className="text-gray-700">+234 807 123 4567</p>
                   </div>
                 </div>
                 
@@ -121,8 +122,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-navy mb-1">Email Address</h3>
-                    <p className="text-gray-700">info@bnakowalodge.com</p>
-                    <p className="text-gray-700">reservations@bnakowalodge.com</p>
+                    <p className="text-gray-700">info@grandambarpalace.com</p>
+                    <p className="text-gray-700">reservations@grandambarpalace.com</p>
                   </div>
                 </div>
                 
@@ -132,8 +133,9 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-navy mb-1">Location</h3>
-                    <p className="text-gray-700">123 Main Street, Dutse</p>
-                    <p className="text-gray-700">Jigawa State, Nigeria</p>
+                    <p className="text-gray-700">Along Kano Road, Opposite Central Bank of Nigeria</p>
+                    <p className="text-gray-700">Dutse, Jigawa State, Nigeria</p>
+                    <p className="text-gray-700">PMB 7008, Dutse</p>
                   </div>
                 </div>
                 
@@ -142,9 +144,10 @@ const ContactPage = () => {
                     <Clock size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-navy mb-1">Opening Hours</h3>
+                    <h3 className="font-bold text-navy mb-1">Operating Hours</h3>
                     <p className="text-gray-700">Front Desk: 24/7</p>
                     <p className="text-gray-700">Restaurant: 6:30 AM - 10:30 PM</p>
+                    <p className="text-gray-700">Bar: 5:00 PM - 12:00 AM</p>
                   </div>
                 </div>
                 
@@ -157,7 +160,7 @@ const ContactPage = () => {
                     <p className="text-gray-700">Chat with us on WhatsApp</p>
                     <Button 
                       className="mt-2 bg-[#25D366] hover:bg-[#128C7E] text-white"
-                      onClick={() => window.open('https://wa.me/2348001234567', '_blank')}
+                      onClick={() => window.open('https://wa.me/2348034567890', '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-2">
                         <path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a8.03 8.03 0 0 0-7.91 9.96L4 18l4.2-.7a7.94 7.94 0 0 0 3.79.96h.04A8.02 8.02 0 0 0 20 10.16a7.93 7.93 0 0 0-2.4-3.84zm-5.55 12.16h-.03a6.6 6.6 0 0 1-3.35-.92l-.24-.14-2.5.65.67-2.43-.16-.25a6.59 6.59 0 0 1-1.01-3.49A6.57 6.57 0 0 1 12.04 5.4a6.45 6.45 0 0 1 4.61 1.91 6.57 6.57 0 0 1 1.94 4.74 6.56 6.56 0 0 1-6.54 6.42zm3.57-4.93c-.2-.1-1.17-.58-1.35-.64-.18-.06-.31-.1-.44.1-.13.2-.5.64-.61.77-.11.13-.23.15-.43.05a5.44 5.44 0 0 1-1.6-1 6.03 6.03 0 0 1-1.1-1.37c-.12-.2-.01-.3.09-.4.09-.09.2-.24.3-.36.1-.12.13-.2.2-.34.07-.13.03-.24-.02-.34-.05-.1-.44-1.05-.6-1.43-.16-.38-.31-.32-.43-.32-.11 0-.24-.02-.37-.02-.13 0-.34.05-.53.25-.18.2-.7.7-.7 1.7s.72 1.97.82 2.11c.1.14 1.42 2.17 3.45 3.04.48.21.86.33 1.15.43.49.15.93.13 1.28.08.39-.06 1.17-.48 1.34-.94.17-.46.17-.86.12-.94-.05-.08-.18-.12-.38-.21z"/>
