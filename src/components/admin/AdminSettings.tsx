@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Bell, Shield, CreditCard, Database, Mail, Phone, MapPin, Clock, Users, Settings, Globe, Wifi, Camera, Car, Coffee, Dumbbell, Waves, Utensils } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { CreateBackupAction, ViewLogsAction, ClearCacheAction, ExportDataAction, EmailMarketingAction } from './SystemActions';
 
 const AdminSettings = () => {
   const { toast } = useToast();
@@ -25,6 +25,57 @@ const AdminSettings = () => {
   const [timezone, setTimezone] = useState('UTC');
   const [currency, setCurrency] = useState('USD');
   const [language, setLanguage] = useState('en');
+
+  // Auto-save functionality
+  const [hasChanges, setHasChanges] = useState(false);
+  const [isAutoSaving, setIsAutoSaving] = useState(false);
+
+  // Auto-save effect
+  useEffect(() => {
+    if (hasChanges && !isAutoSaving) {
+      setIsAutoSaving(true);
+      const timeoutId = setTimeout(() => {
+        handleAutoSave();
+      }, 2000); // Auto-save after 2 seconds of no changes
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [hasChanges, hotelName, hotelDescription, contactEmail, contactPhone, address, timezone, currency, language]);
+
+  const handleAutoSave = () => {
+    // Simulate saving to backend/localStorage
+    localStorage.setItem('hotelSettings', JSON.stringify({
+      hotelName,
+      hotelDescription,
+      contactEmail,
+      contactPhone,
+      address,
+      timezone,
+      currency,
+      language
+    }));
+    
+    setHasChanges(false);
+    setIsAutoSaving(false);
+    
+    toast({
+      title: "Settings Auto-Saved",
+      description: "Your changes have been automatically saved.",
+    });
+  };
+
+  const handleInputChange = (setter: (value: string) => void, value: string) => {
+    setter(value);
+    setHasChanges(true);
+  };
+
+  const handleManualSave = () => {
+    handleAutoSave();
+    toast({
+      title: "Settings Saved",
+      description: "All settings have been successfully saved and will appear on the website.",
+    });
+  };
 
   // Notification Settings State
   const [emailNotifications, setEmailNotifications] = useState(true);
@@ -66,19 +117,13 @@ const AdminSettings = () => {
     { id: 'concierge', name: '24/7 Concierge', enabled: true, icon: Users },
   ]);
 
-  const handleSaveSettings = () => {
-    toast({
-      title: "Settings Saved",
-      description: "All settings have been successfully updated.",
-    });
-  };
-
   const toggleAmenity = (amenityId: string) => {
     setAmenities(prev => prev.map(amenity => 
       amenity.id === amenityId 
         ? { ...amenity, enabled: !amenity.enabled }
         : amenity
     ));
+    setHasChanges(true);
   };
 
   return (
@@ -87,9 +132,14 @@ const AdminSettings = () => {
         <div>
           <h1 className="text-2xl font-bold">Settings</h1>
           <p className="text-gray-600">Manage your hotel administration settings</p>
+          {isAutoSaving && <p className="text-sm text-blue-600">Auto-saving...</p>}
         </div>
-        <Button onClick={handleSaveSettings} className="bg-accent-red hover:bg-red-700">
-          Save All Settings
+        <Button 
+          onClick={handleManualSave} 
+          className="bg-accent-red hover:bg-red-700"
+          disabled={!hasChanges}
+        >
+          Save Changes
         </Button>
       </div>
 
@@ -120,7 +170,7 @@ const AdminSettings = () => {
                   <Input
                     id="hotelName"
                     value={hotelName}
-                    onChange={(e) => setHotelName(e.target.value)}
+                    onChange={(e) => handleInputChange(setHotelName, e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -129,7 +179,7 @@ const AdminSettings = () => {
                     id="contactEmail"
                     type="email"
                     value={contactEmail}
-                    onChange={(e) => setContactEmail(e.target.value)}
+                    onChange={(e) => handleInputChange(setContactEmail, e.target.value)}
                   />
                 </div>
               </div>
@@ -140,12 +190,12 @@ const AdminSettings = () => {
                   <Input
                     id="contactPhone"
                     value={contactPhone}
-                    onChange={(e) => setContactPhone(e.target.value)}
+                    onChange={(e) => handleInputChange(setContactPhone, e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="timezone">Timezone</Label>
-                  <Select value={timezone} onValueChange={setTimezone}>
+                  <Select value={timezone} onValueChange={(value) => handleInputChange(setTimezone, value)}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -164,7 +214,7 @@ const AdminSettings = () => {
                 <Input
                   id="address"
                   value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={(e) => handleInputChange(setAddress, e.target.value)}
                 />
               </div>
 
@@ -173,7 +223,7 @@ const AdminSettings = () => {
                 <Textarea
                   id="description"
                   value={hotelDescription}
-                  onChange={(e) => setHotelDescription(e.target.value)}
+                  onChange={(e) => handleInputChange(setHotelDescription, e.target.value)}
                   rows={3}
                 />
               </div>
@@ -181,7 +231,7 @@ const AdminSettings = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="currency">Default Currency</Label>
-                  <Select value={currency} onValueChange={setCurrency}>
+                  <Select value={currency} onValueChange={(value) => handleInputChange(setCurrency, value)}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -195,7 +245,7 @@ const AdminSettings = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="language">Default Language</Label>
-                  <Select value={language} onValueChange={setLanguage}>
+                  <Select value={language} onValueChange={(value) => handleInputChange(setLanguage, value)}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -208,6 +258,14 @@ const AdminSettings = () => {
                   </Select>
                 </div>
               </div>
+
+              {hasChanges && (
+                <div className="flex justify-end">
+                  <Button onClick={handleManualSave} className="bg-accent-red hover:bg-red-700">
+                    Save Changes
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
 
@@ -235,6 +293,13 @@ const AdminSettings = () => {
                   );
                 })}
               </div>
+              {hasChanges && (
+                <div className="flex justify-end mt-4">
+                  <Button onClick={handleManualSave} className="bg-accent-red hover:bg-red-700">
+                    Save Changes
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -256,7 +321,7 @@ const AdminSettings = () => {
                     <Label>Email Notifications</Label>
                     <p className="text-sm text-gray-500">Receive notifications via email</p>
                   </div>
-                  <Switch checked={emailNotifications} onCheckedChange={setEmailNotifications} />
+                  <Switch checked={emailNotifications} onCheckedChange={(checked) => { setEmailNotifications(checked); setHasChanges(true); }} />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -264,7 +329,7 @@ const AdminSettings = () => {
                     <Label>SMS Notifications</Label>
                     <p className="text-sm text-gray-500">Receive notifications via SMS</p>
                   </div>
-                  <Switch checked={smsNotifications} onCheckedChange={setSmsNotifications} />
+                  <Switch checked={smsNotifications} onCheckedChange={(checked) => { setSmsNotifications(checked); setHasChanges(true); }} />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -272,7 +337,7 @@ const AdminSettings = () => {
                     <Label>Push Notifications</Label>
                     <p className="text-sm text-gray-500">Receive browser push notifications</p>
                   </div>
-                  <Switch checked={pushNotifications} onCheckedChange={setPushNotifications} />
+                  <Switch checked={pushNotifications} onCheckedChange={(checked) => { setPushNotifications(checked); setHasChanges(true); }} />
                 </div>
               </div>
 
@@ -286,7 +351,7 @@ const AdminSettings = () => {
                     <Label>New Booking Alerts</Label>
                     <p className="text-sm text-gray-500">Get notified when new bookings are made</p>
                   </div>
-                  <Switch checked={bookingAlerts} onCheckedChange={setBookingAlerts} />
+                  <Switch checked={bookingAlerts} onCheckedChange={(checked) => { setBookingAlerts(checked); setHasChanges(true); }} />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -294,7 +359,7 @@ const AdminSettings = () => {
                     <Label>Payment Alerts</Label>
                     <p className="text-sm text-gray-500">Get notified about payment updates</p>
                   </div>
-                  <Switch checked={paymentAlerts} onCheckedChange={setPaymentAlerts} />
+                  <Switch checked={paymentAlerts} onCheckedChange={(checked) => { setPaymentAlerts(checked); setHasChanges(true); }} />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -302,9 +367,17 @@ const AdminSettings = () => {
                     <Label>Maintenance Alerts</Label>
                     <p className="text-sm text-gray-500">Get notified about room maintenance issues</p>
                   </div>
-                  <Switch checked={maintenanceAlerts} onCheckedChange={setMaintenanceAlerts} />
+                  <Switch checked={maintenanceAlerts} onCheckedChange={(checked) => { setMaintenanceAlerts(checked); setHasChanges(true); }} />
                 </div>
               </div>
+
+              {hasChanges && (
+                <div className="flex justify-end">
+                  <Button onClick={handleManualSave} className="bg-accent-red hover:bg-red-700">
+                    Save Changes
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -325,7 +398,7 @@ const AdminSettings = () => {
                   <Label>Two-Factor Authentication</Label>
                   <p className="text-sm text-gray-500">Add an extra layer of security</p>
                 </div>
-                <Switch checked={twoFactorAuth} onCheckedChange={setTwoFactorAuth} />
+                <Switch checked={twoFactorAuth} onCheckedChange={(checked) => { setTwoFactorAuth(checked); setHasChanges(true); }} />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -334,7 +407,7 @@ const AdminSettings = () => {
                   <Input
                     id="sessionTimeout"
                     value={sessionTimeout}
-                    onChange={(e) => setSessionTimeout(e.target.value)}
+                    onChange={(e) => { setSessionTimeout(e.target.value); setHasChanges(true); }}
                   />
                 </div>
                 <div className="space-y-2">
@@ -342,7 +415,7 @@ const AdminSettings = () => {
                   <Input
                     id="passwordExpiry"
                     value={passwordExpiry}
-                    onChange={(e) => setPasswordExpiry(e.target.value)}
+                    onChange={(e) => { setPasswordExpiry(e.target.value); setHasChanges(true); }}
                   />
                 </div>
               </div>
@@ -352,9 +425,17 @@ const AdminSettings = () => {
                 <Input
                   id="loginAttempts"
                   value={loginAttempts}
-                  onChange={(e) => setLoginAttempts(e.target.value)}
+                  onChange={(e) => { setLoginAttempts(e.target.value); setHasChanges(true); }}
                 />
               </div>
+
+              {hasChanges && (
+                <div className="flex justify-end">
+                  <Button onClick={handleManualSave} className="bg-accent-red hover:bg-red-700">
+                    Save Changes
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -375,7 +456,7 @@ const AdminSettings = () => {
                   <Label>Auto-Confirm Bookings</Label>
                   <p className="text-sm text-gray-500">Automatically confirm new bookings</p>
                 </div>
-                <Switch checked={autoConfirmBookings} onCheckedChange={setAutoConfirmBookings} />
+                <Switch checked={autoConfirmBookings} onCheckedChange={(checked) => { setAutoConfirmBookings(checked); setHasChanges(true); }} />
               </div>
 
               <div className="flex items-center justify-between">
@@ -383,7 +464,7 @@ const AdminSettings = () => {
                   <Label>Allow Overbooking</Label>
                   <p className="text-sm text-gray-500">Allow bookings beyond room capacity</p>
                 </div>
-                <Switch checked={overbookingAllowed} onCheckedChange={setOverbookingAllowed} />
+                <Switch checked={overbookingAllowed} onCheckedChange={(checked) => { setOverbookingAllowed(checked); setHasChanges(true); }} />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -392,7 +473,7 @@ const AdminSettings = () => {
                   <Input
                     id="maxAdvanceBooking"
                     value={maxAdvanceBooking}
-                    onChange={(e) => setMaxAdvanceBooking(e.target.value)}
+                    onChange={(e) => { setMaxAdvanceBooking(e.target.value); setHasChanges(true); }}
                   />
                 </div>
                 <div className="space-y-2">
@@ -400,14 +481,14 @@ const AdminSettings = () => {
                   <Input
                     id="minBookingNotice"
                     value={minBookingNotice}
-                    onChange={(e) => setMinBookingNotice(e.target.value)}
+                    onChange={(e) => { setMinBookingNotice(e.target.value); setHasChanges(true); }}
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="cancellationPolicy">Cancellation Policy</Label>
-                <Select value={cancellationPolicy} onValueChange={setCancellationPolicy}>
+                <Select value={cancellationPolicy} onValueChange={(value) => { setCancellationPolicy(value); setHasChanges(true); }}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -419,6 +500,14 @@ const AdminSettings = () => {
                   </SelectContent>
                 </Select>
               </div>
+
+              {hasChanges && (
+                <div className="flex justify-end">
+                  <Button onClick={handleManualSave} className="bg-accent-red hover:bg-red-700">
+                    Save Changes
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -439,7 +528,7 @@ const AdminSettings = () => {
                   <Label>Auto Payment Processing</Label>
                   <p className="text-sm text-gray-500">Automatically process payments</p>
                 </div>
-                <Switch checked={autoPaymentProcessing} onCheckedChange={setAutoPaymentProcessing} />
+                <Switch checked={autoPaymentProcessing} onCheckedChange={(checked) => { setAutoPaymentProcessing(checked); setHasChanges(true); }} />
               </div>
 
               <div className="flex items-center justify-between">
@@ -447,7 +536,7 @@ const AdminSettings = () => {
                   <Label>Require Deposit</Label>
                   <p className="text-sm text-gray-500">Require deposit for bookings</p>
                 </div>
-                <Switch checked={requireDeposit} onCheckedChange={setRequireDeposit} />
+                <Switch checked={requireDeposit} onCheckedChange={(checked) => { setRequireDeposit(checked); setHasChanges(true); }} />
               </div>
 
               <div className="flex items-center justify-between">
@@ -455,7 +544,7 @@ const AdminSettings = () => {
                   <Label>Late Fee Enabled</Label>
                   <p className="text-sm text-gray-500">Charge late fees for overdue payments</p>
                 </div>
-                <Switch checked={lateFeeEnabled} onCheckedChange={setLateFeeEnabled} />
+                <Switch checked={lateFeeEnabled} onCheckedChange={(checked) => { setLateFeeEnabled(checked); setHasChanges(true); }} />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -464,7 +553,7 @@ const AdminSettings = () => {
                   <Input
                     id="depositAmount"
                     value={depositAmount}
-                    onChange={(e) => setDepositAmount(e.target.value)}
+                    onChange={(e) => { setDepositAmount(e.target.value); setHasChanges(true); }}
                   />
                 </div>
                 <div className="space-y-2">
@@ -472,10 +561,18 @@ const AdminSettings = () => {
                   <Input
                     id="lateFeeAmount"
                     value={lateFeeAmount}
-                    onChange={(e) => setLateFeeAmount(e.target.value)}
+                    onChange={(e) => { setLateFeeAmount(e.target.value); setHasChanges(true); }}
                   />
                 </div>
               </div>
+
+              {hasChanges && (
+                <div className="flex justify-end">
+                  <Button onClick={handleManualSave} className="bg-accent-red hover:bg-red-700">
+                    Save Changes
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -495,9 +592,9 @@ const AdminSettings = () => {
                 <div className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
                     <Label>Database Backup</Label>
-                    <p className="text-sm text-gray-500">Last backup: 2 hours ago</p>
+                    <p className="text-sm text-gray-500">Create and manage database backups</p>
                   </div>
-                  <Button variant="outline">Create Backup</Button>
+                  <CreateBackupAction />
                 </div>
 
                 <div className="flex items-center justify-between p-4 border rounded-lg">
@@ -505,7 +602,7 @@ const AdminSettings = () => {
                     <Label>System Logs</Label>
                     <p className="text-sm text-gray-500">View system activity logs</p>
                   </div>
-                  <Button variant="outline">View Logs</Button>
+                  <ViewLogsAction />
                 </div>
 
                 <div className="flex items-center justify-between p-4 border rounded-lg">
@@ -513,7 +610,7 @@ const AdminSettings = () => {
                     <Label>Cache Management</Label>
                     <p className="text-sm text-gray-500">Clear system cache for better performance</p>
                   </div>
-                  <Button variant="outline">Clear Cache</Button>
+                  <ClearCacheAction />
                 </div>
 
                 <div className="flex items-center justify-between p-4 border rounded-lg">
@@ -521,7 +618,15 @@ const AdminSettings = () => {
                     <Label>Export Data</Label>
                     <p className="text-sm text-gray-500">Export bookings and guest data</p>
                   </div>
-                  <Button variant="outline">Export</Button>
+                  <ExportDataAction />
+                </div>
+
+                <div className="flex items-center justify-between p-4 border rounded-lg">
+                  <div>
+                    <Label>Email Marketing</Label>
+                    <p className="text-sm text-gray-500">Send marketing emails to guests</p>
+                  </div>
+                  <EmailMarketingAction />
                 </div>
               </div>
 
@@ -592,8 +697,8 @@ const AdminSettings = () => {
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-gray-500" />
                     <div>
-                      <span className="font-medium">Email Marketing</span>
-                      <p className="text-sm text-gray-500">Automated email campaigns for guests</p>
+                      <span className="font-medium">Advanced Analytics</span>
+                      <p className="text-sm text-gray-500">Detailed reporting and analytics dashboard</p>
                     </div>
                   </div>
                   <Badge variant="secondary">Beta</Badge>
